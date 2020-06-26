@@ -47,7 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                   if (isLogged ==false) {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => LoginScreen()));
-                  } else if(isLogged ==true){
+                  } else if(isLogged == true){
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => MenuScreen()));
                   }

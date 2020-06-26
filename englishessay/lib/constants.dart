@@ -8,3 +8,4 @@ TextStyle kTitleStyle = TextStyle(fontSize: 20);
 TextStyle kAppBarTitleStyle = TextStyle(fontSize: 20,color: Colors.white);
 TextStyle kAvatarTextStyle = TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white);
 TextStyle kInputTextStyle = TextStyle(color: Colors.black);
+TextStyle kDescriptionTextStyle= TextStyle(fontSize: 20);

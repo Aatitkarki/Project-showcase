@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "525309062396",
+    "firebase_url": "https://hamro-essay.firebaseio.com",
+    "project_id": "hamro-essay",
+    "storage_bucket": "hamro-essay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525309062396:android:1c0ec3feafa3b046447b79",
+        "android_client_info": {
+          "package_name": "com.sureshk.englishessay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525309062396-a8hvakk58hs0hijm4qickuelrqr5ef60.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sureshk.englishessay",
+            "certificate_hash": "69edb7f154d8c39ddcf4bccc7afc76c648b1fbd3"
+          }
+        },
+        {
+          "client_id": "525309062396-204mauvu9675hf8bkki0tfopr009kpot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0m6cJSvO7VyOZIRXAdBwtZpmSgfZ5CxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525309062396-204mauvu9675hf8bkki0tfopr009kpot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

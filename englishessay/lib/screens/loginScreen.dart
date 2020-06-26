@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (isValidEmail(_emailController.text)) {
                                 bool loggedIn = await loginUser(context);
                                 if (loggedIn) {
-                                  UserControl().userLogIn();
+                                 await UserControl().userLogIn();
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(

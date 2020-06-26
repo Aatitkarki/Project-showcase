@@ -11,11 +11,11 @@ class UserControl{
     await setUserData(userName, email);    
   }
 
-  setUserData(String username,String email,)async{
+  setUserData(String username,String email,) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("userName", username);
+    prefs.setString("username", username);
     prefs.setString("email", email);
-  }
+      }                                                       
 
   userLogIn() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();

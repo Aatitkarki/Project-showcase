@@ -43,7 +43,8 @@ class UserLogin {
           AlertingData().showDialogBox(context, "Wrong email/Password",
               "Please enter correct email or password!");
         } else if (response.body == "success") {
-          UserControl().getUserInfo(data);
+
+          await UserControl().getUserInfo(data);
           return true;
         } else {
           AlertingData().showDialogBox(context, "Server Problem",

@@ -1,19 +1,17 @@
 import 'package:englishessay/components/menuIcon.dart';
 import 'package:englishessay/screens/bookmarkScreen.dart';
 import 'package:englishessay/screens/essayList.dart';
-import 'package:englishessay/screens/grammerScreen.dart';
-import 'package:englishessay/screens/quoteScreen.dart';
 import 'package:englishessay/services/networkChecker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      
       child: Container(
         height: size.height,
         width: double.infinity,
@@ -26,7 +24,13 @@ class HomePage extends StatelessWidget {
                 child: SvgPicture.asset("assets/icons/studying.svg",
                     height: size.height * 0.2)),
             Positioned(
-                top: 55,
+              top: 20,
+                left: 5,
+                child: IconButton(icon: Icon(Icons.menu,size: 35,), onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                })),
+            Positioned(
+                top: 65,
                 left: 30,
                 child: Text(
                   "HAMRO \n ESSAY",
@@ -35,10 +39,6 @@ class HomePage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  "What would you\n like to read?",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
                 SizedBox(
                   height: size.height * 0.03,
                 ),
@@ -68,42 +68,6 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => QuoteScreen()));
-                      },
-                      child: MenuIcon(
-                        icon: FontAwesomeIcons.quoteRight,
-                        iconTitle: "QUOTES",
-                        iconColor: Color(0xff91382B),
-                        backgroundColor: Color(0xffCFADDC),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => GrammerSection()));
-                      },
-                      child: MenuIcon(
-                        icon: FontAwesomeIcons.book,
-                        iconTitle: "GRAMMER",
-                        iconColor: Color(0xff91382B),
-                        backgroundColor: Color(0xffF5A492),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
                                 builder: (context) => BookmarkScreen()));
                       },
                       child: MenuIcon(
@@ -113,6 +77,7 @@ class HomePage extends StatelessWidget {
                         backgroundColor: Color(0xff78D0B6),
                       ),
                     ),
+                    
                   ],
                 ),
                 SizedBox(
@@ -143,6 +108,7 @@ class HomePage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Color(0xff42485c),
                         )),
+
                   ],
                 ),
               ),

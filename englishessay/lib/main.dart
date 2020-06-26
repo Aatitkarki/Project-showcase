@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         ],
         child: ChangeNotifierProvider(create: (_) {
           return themeProvider;
-        }, child: Consumer<ThemeProvider>(
+        }, child: Consumer<ThemeProvider>(          
             builder: (BuildContext context, value, Widget child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,

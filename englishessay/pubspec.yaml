@@ -39,7 +39,9 @@ dependencies:
   ff_navigation_bar: ^0.1.4
   connectivity: ^0.4.8+6
   splashscreen:
-
+  url_launcher: ^5.4.11
+  firebase_admob:
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

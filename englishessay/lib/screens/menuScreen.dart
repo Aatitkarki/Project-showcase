@@ -1,6 +1,8 @@
 import 'package:englishessay/Model/themeProvider.dart';
 import 'package:englishessay/constants.dart';
+import 'package:englishessay/screens/aboutDeveloper.dart';
 import 'package:englishessay/screens/bookmarkScreen.dart';
+import 'package:englishessay/screens/essayList.dart';
 import 'package:englishessay/screens/homePage.dart';
 import 'package:englishessay/screens/loginScreen.dart';
 import 'package:englishessay/services/userInOut.dart';
@@ -16,25 +18,24 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  List<Widget> tabs = [HomePage(), BookmarkScreen(),];
+  List<Widget> tabs = [
+    HomePage(),
+    BookmarkScreen(),
+  ];
   int _currentIndex = 0;
-  String username="user";
-  String email="email";
+  String username;
+  String email;
 
-  getUserData()async{
-    SharedPreferences prefs =await SharedPreferences.getInstance();
-    username =prefs.getString("username");
+  getUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    username = prefs.getString("username");
     email = prefs.getString("email");
-    print(username);
-    print(email);
+    setState(() {});
   }
 
   @override
   void initState() {
     getUserData();
-    setState(() {
-      
-    });
     super.initState();
   }
 
@@ -45,6 +46,7 @@ class _MenuScreenState extends State<MenuScreen> {
       return showDialog(
           context: context,
           builder: (context) => AlertDialog(
+                elevation: 10,
                 title: Text("Do you want to Exit App?"),
                 actions: <Widget>[
                   FlatButton(
@@ -64,40 +66,41 @@ class _MenuScreenState extends State<MenuScreen> {
             child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text(username),
-              accountEmail: Text(email),
+              accountName: Text(username == null ? "Guest" : username),
+              accountEmail: Text(email == null ? "guest@gmail.com" : email),
               currentAccountPicture: CircleAvatar(
                 backgroundColor:
                     Theme.of(context).platform == TargetPlatform.iOS
                         ? Colors.blue
                         : Colors.white,
-                child: Text(
-                  username.substring(0, 1).toUpperCase(),
-                  style: TextStyle(fontSize: 40.0),
-                ),
+                child: username == null
+                    ? Text("G")
+                    : Text(
+                      
+                        username.substring(0, 1).toUpperCase(),
+                        style: TextStyle(fontSize: 40.0),
+                      ),
               ),
             ),
-            ListTile(
-              title: Text("Essays"),
-              leading: Icon(
-                FontAwesomeIcons.bookOpen,
-                color: kPrimaryColor,
-              ),
+            SizedBox(height:30),
+            DrawerMenu( 
+              title: "Essays",
+              icon: FontAwesomeIcons.bookOpen,
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => EssayList()));
+                    
+              },
             ),
-            ListTile(
-              title: Text("BookMark"),
-              leading: Icon(
-                FontAwesomeIcons.solidBookmark,
-                color: kPrimaryColor,
-              ),
+            DrawerMenu(
+              title: "BookMark",
+              icon: FontAwesomeIcons.solidBookmark,
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => BookmarkScreen()));
+              },
             ),
-            ListTile(
-              title: Text("Grammer"),
-              leading: Icon(
-                FontAwesomeIcons.book,
-                color: kPrimaryColor,
-              ),
-            ),
+           
             ListTile(
               title: Text(
                 "DarkMode",
@@ -108,22 +111,26 @@ class _MenuScreenState extends State<MenuScreen> {
                     themeChange.darkTheme = value;
                   }),
               leading: Icon(
-                FontAwesomeIcons.book,
+                FontAwesomeIcons.sun,
                 color: kPrimaryColor,
               ),
+            ), DrawerMenu( 
+              title: "About Developer",
+              icon: FontAwesomeIcons.dev,
+              press: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutDeveloper()));
+              },
             ),
-            GestureDetector(
-              onTap: () {
+            DrawerMenu(
+              title: "Log Out",
+              icon: FontAwesomeIcons.user,
+              press: () {
                 UserControl().userLogOut();
-
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => LoginScreen()));
               },
-              child: ListTile(
-                leading: Icon(FontAwesomeIcons.user),
-                title: Text("Log Out"),
-              ),
-            )
+            ),
           ],
         )),
         body: tabs[_currentIndex],
@@ -155,6 +162,27 @@ class _MenuScreenState extends State<MenuScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class DrawerMenu extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final Function press;
+  const DrawerMenu({this.icon, this.title, this.press});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: press,
+      child: ListTile(
+        leading: Icon(
+          icon,
+          color: kPrimaryColor,
+        ),
+        title: Text(title,style: TextStyle(fontSize: 16),),
       ),
     );
   }

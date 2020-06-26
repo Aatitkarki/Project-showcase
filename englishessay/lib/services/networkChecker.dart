@@ -9,7 +9,7 @@ class NetworkChecker{
     if(result == ConnectivityResult.wifi || result == ConnectivityResult.mobile){
       return true;
     }else if(result == ConnectivityResult.none){
-      alertingData.showDialogBox(context, "NO internet", "Please connect to the internet to download the data.");
+      alertingData.showDialogBox(context, "NO internet", "Please connect to the internet.");
     }
     return false;
   }
