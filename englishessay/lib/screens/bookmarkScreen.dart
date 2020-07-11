@@ -1,10 +1,12 @@
 import 'package:englishessay/Model/essay.dart';
 import 'package:englishessay/components/essayTitles.dart';
 import 'package:englishessay/constants.dart';
-import 'package:englishessay/services/admobService.dart';
+import 'package:flutter/cupertino.dart';
+// import 'package:flutter_native_admob/flutter_native_admob.dart';
 import 'package:englishessay/services/databaseHelper.dart';
-import 'package:firebase_admob/firebase_admob.dart';
+//import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_native_admob/native_admob_controller.dart';
 
 const String testDevice = 'Mobile_id';
 
@@ -14,20 +16,23 @@ class BookmarkScreen extends StatefulWidget {
 }
 
 class _BookmarkScreenState extends State<BookmarkScreen> {
-  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    testDevices: testDevice!= null ? <String>[testDevice] : null,
-    nonPersonalizedAds: true,
-    keywords: <String>["book","game","essay"]
-  );
+  // final nativeAdController = NativeAdmobController();
+  // final adUnit = "ca-app-pub-1181492247529937~8396875598"; 
+  // final bannerAdUnit = "ca-app-pub-1181492247529937/5770712250";
+  // static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+  //   testDevices: testDevice!= null ? <String>[testDevice] : null,
+  //   nonPersonalizedAds: true,
+  //   keywords: <String>["book","game","essay"]
+  // );
 
-  BannerAd _bannerAd;
-  BannerAd createBannerAd(){
-    return BannerAd(adUnitId: BannerAd.testAdUnitId, size: AdSize.fullBanner,
-    targetingInfo: targetingInfo,
-    listener: (MobileAdEvent event){
-      print("BannerAd $event");
-    });
-  }
+  // BannerAd _bannerAd;
+  // BannerAd createBannerAd(){
+  //   return BannerAd(adUnitId: BannerAd.testAdUnitId, size: AdSize.fullBanner,
+  //   targetingInfo: targetingInfo,
+  //   listener: (MobileAdEvent event){
+  //     print("BannerAd $event");
+  //   });
+  // }
   List<Essay> essayList;
   bool isLoading = true;
   bool emptyBookmark = false;
@@ -58,8 +63,8 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
 
   @override
   void initState() {    
-    FirebaseAdMob.instance.initialize(appId: BannerAd.testAdUnitId);
-    _bannerAd = createBannerAd()..load()..show();
+    // FirebaseAdMob.instance.initialize(appId: BannerAd.testAdUnitId);
+    // _bannerAd = createBannerAd()..load()..show();
    //  bannerAd = createBannerAd()..load()..show();
 
     getData();    
@@ -67,7 +72,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
   }
   @override
   void dispose() {
-    _bannerAd.dispose();
+   // _bannerAd.dispose();
     super.dispose();
   }
 
@@ -104,14 +109,20 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                     child: Container(
                       height: size.height,
                       width: double.infinity,
-                      child: Column(
-    
-                        children: <Widget>[
-                          EssayTitleCard(
-                              essayList: essayList,
-                            ),
-                        ],
-                      ),
+                      child: Column(    
+                          children: <Widget>[
+                            EssayTitleCard(
+                                essayList: essayList,
+                              ),
+                          //     Container(
+                          // child: NativeAdmob(adUnitID: adUnit,
+                          // controller: nativeAdController,
+                          // type: NativeAdmobType.full,
+                          // error: CupertinoActivityIndicator(),
+                          // ),
+                       // )
+                          ],
+                        ),
                     ),
                   ),
                  // AdmobBanner(adUnitId: ams.getBannerAppId(), adSize: AdmobBannerSize.FULL_BANNER),
